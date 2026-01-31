@@ -313,9 +313,9 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E0000050291A0050 /* ModelExplorer */ = {
+		E0000050291A0050 /* ModelExplorerApp */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = ModelExplorer;
+			productName = ModelExplorerApp;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

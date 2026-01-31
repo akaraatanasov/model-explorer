@@ -3,7 +3,7 @@ import SwiftUI
 import WebServer
 #endif
 
-struct ContentView: View {
+public struct ContentView: View {
     @State private var viewModel = ChatViewModel()
     @StateObject private var conversationStore = ConversationStore.shared
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
@@ -13,7 +13,9 @@ struct ContentView: View {
     @State private var serverPort: UInt16 = 8080
     #endif
     
-    var body: some View {
+    public init() {}
+    
+    public var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             ConversationSidebar(store: conversationStore) {
                 viewModel.newConversation()

@@ -1,8 +1,9 @@
 import SwiftUI
 
-@main
-struct ModelExplorerApp: App {
-    var body: some Scene {
+public struct ModelExplorerApp: App {
+    public init() {}
+    
+    public var body: some Scene {
         WindowGroup {
             ContentView()
         }
