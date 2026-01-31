@@ -34,12 +34,12 @@
 			);
 			sourceTree = "<group>";
 		};
-		A0000010291A0010 /* App */ = {
+		A0000010291A0010 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				A0000002291A0002 /* AppMain.swift */,
 			);
-			path = .;
+			name = Sources;
 			sourceTree = "<group>";
 		};
 		E0000021291A0021 /* Products */ = {

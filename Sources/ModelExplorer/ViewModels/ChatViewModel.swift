@@ -89,7 +89,15 @@ final class ChatViewModel {
                 conversation.messages.removeLast()
                 conversationStore.updateConversation(conversation)
             }
-            errorMessage = error.localizedDescription
+            
+            // Provide more descriptive error messages
+            if ModelAvailabilityStatus.isSimulator {
+                errorMessage = "Foundation Models cannot run in the iOS Simulator. Please use a physical device or run on macOS."
+            } else if "\(error)".contains("GenerationError") || "\(error)".contains("modelcatalog") {
+                errorMessage = "The on-device AI model is not available. This may happen on simulators, virtual machines, or if Apple Intelligence is not set up. Please check Settings > Apple Intelligence & Siri."
+            } else {
+                errorMessage = error.localizedDescription
+            }
         }
         
         isLoading = false

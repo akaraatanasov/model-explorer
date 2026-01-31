@@ -51,6 +51,8 @@ struct ModelUnavailableView: View {
             return .orange
         case .modelNotReady:
             return .blue
+        case .runningInSimulator:
+            return .purple
         }
     }
     
@@ -65,6 +67,10 @@ struct ModelUnavailableView: View {
         }
         #endif
     }
+}
+
+#Preview("Running in Simulator") {
+    ModelUnavailableView(status: .runningInSimulator)
 }
 
 #Preview("Device Not Eligible") {

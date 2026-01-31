@@ -7,8 +7,23 @@ public enum ModelAvailabilityStatus: Sendable {
     case deviceNotEligible
     case appleIntelligenceNotEnabled
     case modelNotReady
+    case runningInSimulator
+    
+    public static var isSimulator: Bool {
+        #if targetEnvironment(simulator)
+        return true
+        #else
+        return false
+        #endif
+    }
     
     public init() {
+        // Check simulator first - models never work there
+        if Self.isSimulator {
+            self = .runningInSimulator
+            return
+        }
+        
         let availability = SystemLanguageModel.default.availability
         switch availability {
         case .available:
@@ -41,6 +56,8 @@ public enum ModelAvailabilityStatus: Sendable {
             return "Apple Intelligence Disabled"
         case .modelNotReady:
             return "Models Not Ready"
+        case .runningInSimulator:
+            return "Simulator Not Supported"
         }
     }
     
@@ -48,6 +65,18 @@ public enum ModelAvailabilityStatus: Sendable {
         switch self {
         case .available:
             return "Apple Foundation Models are ready to use."
+            
+        case .runningInSimulator:
+            return """
+            Apple Foundation Models cannot run in the iOS/iPadOS Simulator.
+            
+            The simulator does not have access to the on-device machine learning models required for Foundation Models.
+            
+            To use this app:
+            • Run on a physical iPhone 15 Pro or later
+            • Run on a physical iPad with M-series chip
+            • Run natively on a Mac with Apple Silicon
+            """
             
         case .deviceNotEligible:
             return """
@@ -95,6 +124,8 @@ public enum ModelAvailabilityStatus: Sendable {
             return "gear.badge.xmark"
         case .modelNotReady:
             return "arrow.down.circle"
+        case .runningInSimulator:
+            return "desktopcomputer.trianglebadge.exclamationmark"
         }
     }
     
