@@ -7,18 +7,25 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [
         .macOS(.v26),
-        .iOS(.v26),
-        .macCatalyst(.v26)
+        .iOS(.v26)
     ],
     products: [
-        // Library for Xcode project to consume
+        // Library for Xcode project to consume (iOS builds)
         .library(name: "ModelExplorerApp", targets: ["ModelExplorerApp"])
     ],
     dependencies: [
         .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.0.0")
     ],
     targets: [
-        // Main app library (used by Xcode project)
+        // Executable for `swift run` and Swift Playgrounds (shares entry point with Xcode)
+        .executableTarget(
+            name: "ModelExplorer",
+            dependencies: ["ModelExplorerApp"],
+            path: "App",
+            exclude: ["Assets.xcassets", "ModelExplorer.xcodeproj"],
+            sources: ["AppMain.swift"]
+        ),
+        // Main app library (used by both executable and Xcode project)
         .target(
             name: "ModelExplorerApp",
             dependencies: [

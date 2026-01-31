@@ -1,11 +1,10 @@
-// App entry point for Xcode builds
-// This file is compiled by Xcode directly, not part of SwiftPM
+// App entry point - shared by Xcode project and SwiftPM executable
 
 import SwiftUI
 import ModelExplorerApp
 
 @main
-struct ModelExplorerXcode: App {
+struct ModelExplorerMain: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
