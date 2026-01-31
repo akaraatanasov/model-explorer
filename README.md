@@ -29,6 +29,16 @@ swift run ModelExplorer
 open Package.swift
 ```
 
+### Running on iOS/iPadOS
+
+After opening in Xcode:
+
+1. Select the **ModelExplorer** scheme
+2. Choose an iOS device/simulator as the run destination
+3. Go to the target's **Build Settings** (in the project navigator, click the package, then ModelExplorer target)
+4. Set **Product Bundle Identifier** to `com.yourname.ModelExplorer`
+5. Build and run (⌘R)
+
 ## Architecture
 
 | Module | Description |

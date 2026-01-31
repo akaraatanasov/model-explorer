@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "ModelExplorer",
+    defaultLocalization: "en",
     platforms: [
         .macOS(.v26),
         .iOS(.v26),
