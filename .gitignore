@@ -15,9 +15,13 @@ DerivedData/
 
 # Swift Package Manager
 .build/
-.swiftpm/
+.swiftpm/xcode/package.xcworkspace/
+.swiftpm/xcode/xcuserdata/
 Package.resolved
 Packages/
+
+# Keep shared Xcode config for bundle ID
+!.swiftpm/xcode/overrides.xcconfig
 
 # CocoaPods (if used)
 Pods/
