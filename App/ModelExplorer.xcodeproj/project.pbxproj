@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		A0000001291A0001 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000002291A0002 /* AppMain.swift */; };
+		A0000003291A0003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0000004291A0004 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A0000002291A0002 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
+		A0000004291A0004 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0000001291A0001 /* ModelExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModelExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -38,6 +40,7 @@
 			isa = PBXGroup;
 			children = (
 				A0000002291A0002 /* AppMain.swift */,
+				A0000004291A0004 /* Assets.xcassets */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -59,6 +62,7 @@
 			buildPhases = (
 				E0000011291A0011 /* Sources */,
 				E0000010291A0010 /* Frameworks */,
+				E0000012291A0012 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -113,6 +117,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E0000012291A0012 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0000003291A0003 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		E0000041291A0041 /* Debug */ = {
