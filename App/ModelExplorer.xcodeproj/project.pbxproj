@@ -3,16 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		112D7BFC2F2E47AC00AF3B2A /* ModelExplorer in Frameworks */ = {isa = PBXBuildFile; productRef = E0000050291A0050 /* ModelExplorer */; };
+		A0000001291A0001 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000002291A0002 /* AppMain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A0000002291A0002 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
 		E0000001291A0001 /* ModelExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModelExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0000002291A0002 /* model-explorer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "model-explorer"; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -20,7 +20,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				112D7BFC2F2E47AC00AF3B2A /* ModelExplorer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30,9 +29,17 @@
 		E0000020291A0020 = {
 			isa = PBXGroup;
 			children = (
-				E0000002291A0002 /* model-explorer */,
+				A0000010291A0010 /* App */,
 				E0000021291A0021 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		A0000010291A0010 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A0000002291A0002 /* AppMain.swift */,
+			);
+			path = .;
 			sourceTree = "<group>";
 		};
 		E0000021291A0021 /* Products */ = {
@@ -50,6 +57,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0000040291A0040 /* Build configuration list for PBXNativeTarget "ModelExplorer" */;
 			buildPhases = (
+				E0000011291A0011 /* Sources */,
 				E0000010291A0010 /* Frameworks */,
 			);
 			buildRules = (
@@ -58,7 +66,7 @@
 			);
 			name = ModelExplorer;
 			packageProductDependencies = (
-				E0000050291A0050 /* ModelExplorer */,
+				E0000050291A0050 /* ModelExplorerApp */,
 			);
 			productName = ModelExplorer;
 			productReference = E0000001291A0001 /* ModelExplorer.app */;
@@ -72,7 +80,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 2620;
+				LastUpgradeCheck = 2600;
 			};
 			buildConfigurationList = E0000070291A0070 /* Build configuration list for PBXProject "ModelExplorer" */;
 			compatibilityVersion = "Xcode 15.0";
@@ -95,6 +103,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXSourcesBuildPhase section */
+		E0000011291A0011 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0000001291A0001 /* AppMain.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
 /* Begin XCBuildConfiguration section */
 		E0000041291A0041 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -103,7 +122,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Model Explorer";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -122,7 +140,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -136,7 +154,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Model Explorer";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -155,7 +172,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -196,7 +213,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -219,7 +235,6 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -260,7 +275,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -276,7 +290,6 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_STRICT_CONCURRENCY = complete;
 			};
