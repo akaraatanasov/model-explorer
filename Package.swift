@@ -14,7 +14,7 @@ let package = Package(
         // Library for Xcode project to consume
         .library(name: "ModelExplorerApp", targets: ["ModelExplorerApp"]),
         // Executable for command-line use on macOS
-        .executable(name: "ModelExplorer", targets: ["ModelExplorer"])
+        .executable(name: "ModelExplorerCLI", targets: ["ModelExplorerCLI"])
     ],
     dependencies: [
         .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.0.0")
@@ -31,7 +31,7 @@ let package = Package(
         ),
         // macOS command-line executable wrapper
         .executableTarget(
-            name: "ModelExplorer",
+            name: "ModelExplorerCLI",
             dependencies: ["ModelExplorerApp"],
             path: "Sources/ModelExplorerCLI"
         ),
