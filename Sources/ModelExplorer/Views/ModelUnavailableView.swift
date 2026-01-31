@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ModelUnavailableView: View {
     let status: ModelAvailabilityStatus
+    var onEnableDemoMode: (() -> Void)?
     
     var body: some View {
         VStack(spacing: 24) {
@@ -33,6 +34,24 @@ struct ModelUnavailableView: View {
                 Text("Checking availability...")
                     .font(.caption)
                     .foregroundStyle(.secondary)
+            }
+            
+            // Demo mode button for unsupported environments
+            if let onEnableDemoMode {
+                Divider()
+                    .frame(maxWidth: 300)
+                    .padding(.top, 8)
+                
+                VStack(spacing: 8) {
+                    Text("Want to test the UI?")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    
+                    Button("Enable Demo Mode") {
+                        onEnableDemoMode()
+                    }
+                    .buttonStyle(.bordered)
+                }
             }
             
             Spacer()

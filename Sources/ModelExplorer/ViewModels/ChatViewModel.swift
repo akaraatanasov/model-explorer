@@ -8,8 +8,10 @@ final class ChatViewModel {
     var inputText: String = ""
     var isLoading: Bool = false
     var errorMessage: String?
+    var isDemoMode: Bool = false
     
     private let modelService = FoundationModelService.shared
+    private let demoService = DemoModelService.shared
     private let conversationStore = ConversationStore.shared
     
     var currentConversationId: UUID? {
@@ -22,6 +24,11 @@ final class ChatViewModel {
     
     var availabilityStatus: ModelAvailabilityStatus {
         modelService.availabilityStatus
+    }
+    
+    /// Returns true if we should use demo mode (model unavailable but user wants to test UI)
+    var shouldUseDemoMode: Bool {
+        !isAvailable && isDemoMode
     }
     
     init() {
@@ -69,6 +76,22 @@ final class ChatViewModel {
         messages.append(assistantMessage)
         conversationStore.addMessage(assistantMessage, to: conversationId!)
         let assistantIndex = messages.count - 1
+        
+        // Use demo mode if model unavailable and demo mode is enabled
+        if shouldUseDemoMode {
+            _ = await demoService.streamResponse(text) { [weak self] partialContent in
+                guard let self else { return }
+                messages[assistantIndex] = ChatMessage(
+                    id: assistantMessage.id,
+                    role: .assistant,
+                    content: partialContent,
+                    timestamp: assistantMessage.timestamp
+                )
+                conversationStore.updateLastMessage(in: conversationId!, content: partialContent)
+            }
+            isLoading = false
+            return
+        }
         
         do {
             _ = try await modelService.streamResponse(text) { [weak self] partialContent in

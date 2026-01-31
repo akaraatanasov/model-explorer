@@ -7,9 +7,12 @@ struct ChatView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if !viewModel.isAvailable {
-                ModelUnavailableView(status: viewModel.availabilityStatus)
-            } else {
+            if viewModel.shouldUseDemoMode || viewModel.isAvailable {
+                // Demo mode banner
+                if viewModel.isDemoMode {
+                    demoBanner
+                }
+                
                 messageList
                 
                 Divider()
@@ -17,10 +20,14 @@ struct ChatView: View {
                 InputBar(
                     text: $viewModel.inputText,
                     isLoading: viewModel.isLoading,
-                    isDisabled: !viewModel.isAvailable,
+                    isDisabled: false,
                     onSend: { Task { await viewModel.sendMessage() } }
                 )
                 .focused($isInputFocused)
+            } else {
+                ModelUnavailableView(status: viewModel.availabilityStatus) {
+                    viewModel.isDemoMode = true
+                }
             }
         }
         .alert("Error", isPresented: .constant(viewModel.errorMessage != nil)) {
@@ -31,6 +38,27 @@ struct ChatView: View {
             }
         }
         .onAppear { isInputFocused = true }
+    }
+    
+    private var demoBanner: some View {
+        HStack {
+            Image(systemName: "theatermask.and.paintbrush")
+            Text("Demo Mode")
+                .fontWeight(.medium)
+            Text("— Responses are simulated Lorem ipsum text")
+                .foregroundStyle(.secondary)
+            Spacer()
+            Button("Exit") {
+                viewModel.isDemoMode = false
+                viewModel.clearChat()
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+        }
+        .font(.caption)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+        .background(.yellow.opacity(0.2))
     }
     
     private var messageList: some View {
