@@ -13,6 +13,7 @@ final class ChatViewModel {
     private let modelService = FoundationModelService.shared
     private let demoService = DemoModelService.shared
     private let conversationStore = ConversationStore.shared
+    private var currentTask: Task<Void, Never>?
     
     var currentConversationId: UUID? {
         conversationStore.currentConversationId
@@ -123,6 +124,12 @@ final class ChatViewModel {
             }
         }
         
+        isLoading = false
+    }
+    
+    func stopGenerating() {
+        currentTask?.cancel()
+        currentTask = nil
         isLoading = false
     }
     

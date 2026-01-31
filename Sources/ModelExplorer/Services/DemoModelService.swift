@@ -7,46 +7,124 @@ final class DemoModelService {
     
     private init() {}
     
-    private let loremParagraphs = [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra.",
-        "Est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida.",
-        "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus.",
-        "Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.",
-        "Pellentesque in ipsum id orci porta dapibus. Cras ultricies ligula sed magna dictum porta.",
-        "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada."
+    private let demoResponses = [
+        // Simple text responses
+        """
+        That's a great question! Let me break this down for you.
+        
+        The key points to consider are:
+        - First, understand the basic concepts
+        - Then, apply them to your specific situation
+        - Finally, iterate and refine your approach
+        
+        Would you like me to elaborate on any of these points?
+        """,
+        
+        // Response with code block
+        """
+        Here's how you could implement that in Swift:
+        
+        ```swift
+        func greet(name: String) -> String {
+            return "Hello, \\(name)!"
+        }
+        
+        let message = greet(name: "World")
+        print(message)
+        ```
+        
+        This function takes a name as input and returns a personalized greeting. The `\\()` syntax is Swift's string interpolation.
+        """,
+        
+        // Response with markdown formatting
+        """
+        # Understanding the Basics
+        
+        Here's a quick overview of the **key concepts** you should know:
+        
+        1. **Variables** - Store data that can change
+        2. **Constants** - Store data that stays the same
+        3. **Functions** - Reusable blocks of code
+        
+        > Pro tip: Always use `let` instead of `var` when the value won't change.
+        
+        For more details, check out the official documentation.
+        """,
+        
+        // List-heavy response
+        """
+        Great idea! Here are some suggestions:
+        
+        **Pros:**
+        - Easy to implement
+        - Well-documented
+        - Active community support
+        
+        **Cons:**
+        - Steeper learning curve initially
+        - Requires some setup time
+        
+        I'd recommend starting with the basics and building up from there. Let me know if you'd like specific examples!
+        """,
+        
+        // Short conversational response
+        """
+        Absolutely! That's a common approach and works well for most use cases.
+        
+        The main thing to keep in mind is that you'll want to handle edge cases gracefully. A simple `guard` statement can help with that.
+        """,
+        
+        // Technical explanation
+        """
+        This is a classic example of the *observer pattern*.
+        
+        ```swift
+        protocol Observer {
+            func update(_ value: Any)
+        }
+        
+        class Subject {
+            private var observers: [Observer] = []
+            
+            func attach(_ observer: Observer) {
+                observers.append(observer)
+            }
+        }
+        ```
+        
+        The pattern allows objects to be notified of state changes without tight coupling between components.
+        """
     ]
     
-    /// Generates a random Lorem ipsum response
+    /// Generates a random demo response
     func generateResponse() -> String {
-        let paragraphCount = Int.random(in: 1...3)
-        let selectedParagraphs = (0..<paragraphCount).map { _ in
-            loremParagraphs.randomElement()!
-        }
-        return selectedParagraphs.joined(separator: "\n\n")
+        demoResponses.randomElement()!
     }
     
     /// Streams a response with simulated typing delay
     func streamResponse(_ prompt: String, onPartial: @escaping (String) -> Void) async -> String {
         let fullResponse = generateResponse()
-        let words = fullResponse.split(separator: " ")
         var currentContent = ""
         
-        for (index, word) in words.enumerated() {
-            // Add space before word (except first)
-            if index > 0 {
-                currentContent += " "
-            }
-            currentContent += String(word)
-            
+        // Stream character by character for more realistic effect
+        for char in fullResponse {
+            currentContent.append(char)
             onPartial(currentContent)
             
-            // Random delay between 20-80ms per word to simulate typing
-            let delay = UInt64.random(in: 20_000_000...80_000_000)
+            // Variable delay based on character type
+            let delay: UInt64
+            if char == "\n" {
+                delay = 50_000_000 // 50ms for newlines
+            } else if char == " " {
+                delay = 15_000_000 // 15ms for spaces
+            } else {
+                delay = UInt64.random(in: 8_000_000...25_000_000) // 8-25ms for chars
+            }
+            
             try? await Task.sleep(nanoseconds: delay)
+            
+            // Check for cancellation
+            if Task.isCancelled { break }
         }
         
         return fullResponse

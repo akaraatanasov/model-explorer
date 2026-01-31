@@ -21,6 +21,9 @@ public struct ContentView: View {
                 viewModel.newConversation()
             }
             .navigationTitle("History")
+            #if !os(macOS)
+            .navigationBarTitleDisplayMode(.inline)
+            #endif
         } detail: {
             ChatView(viewModel: viewModel)
                 .navigationTitle(currentTitle)
@@ -37,6 +40,7 @@ public struct ContentView: View {
                     }
                 }
                 #else
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button("Delete", systemImage: "trash") {
@@ -68,7 +72,7 @@ public struct ContentView: View {
     private var serverToggle: some View {
         HStack {
             if isServerRunning {
-                Link("localhost:\(serverPort)", destination: URL(string: "http://localhost:\(serverPort)")!)
+                Link("localhost:\(String(serverPort))", destination: URL(string: "http://localhost:\(serverPort)")!)
                     .font(.caption.monospaced())
             }
             
