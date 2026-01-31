@@ -18,26 +18,20 @@ A multiplatform SwiftUI app for interacting with Apple Foundation Models, featur
 
 ## Build & Run
 
+### macOS (Command Line)
 ```bash
-# Build
 swift build
-
-# Run (macOS)
 swift run ModelExplorer
-
-# Open in Xcode
-open Package.swift
 ```
 
-### Running on iOS/iPadOS
+### iOS / iPadOS / macOS (Xcode)
+```bash
+open App/ModelExplorer.xcodeproj
+```
+Then select your target device and press ⌘R.
 
-After opening in Xcode:
-
-1. Select the **ModelExplorer** scheme
-2. Choose an iOS device/simulator as the run destination
-3. Go to the target's **Build Settings** (in the project navigator, click the package, then ModelExplorer target)
-4. Set **Product Bundle Identifier** to `com.yourname.ModelExplorer`
-5. Build and run (⌘R)
+> **Note:** The Xcode project is a thin wrapper that references the SwiftPM package.
+> All code lives in `Package.swift` format under `Sources/`.
 
 ## Architecture
 

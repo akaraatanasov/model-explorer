@@ -2,7 +2,6 @@
 .DS_Store
 
 # Xcode
-*.xcodeproj/
 *.xcworkspace/
 xcuserdata/
 DerivedData/
@@ -13,15 +12,14 @@ DerivedData/
 *.dSYM.zip
 *.dSYM
 
+# Keep the Xcode project wrapper for iOS builds
+!App/ModelExplorer.xcodeproj/
+
 # Swift Package Manager
 .build/
-.swiftpm/xcode/package.xcworkspace/
-.swiftpm/xcode/xcuserdata/
+.swiftpm/
 Package.resolved
 Packages/
-
-# Keep shared Xcode config for bundle ID
-!.swiftpm/xcode/overrides.xcconfig
 
 # CocoaPods (if used)
 Pods/
